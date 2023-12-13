@@ -9,8 +9,20 @@ distance_from_sun (decimal, not null)
 Ensure that planet_name column does not allow NULL values, while distance_from_sun can have NULL values.
 
 ```SQL
-CREATE TABLE planets(planet_id INT, planet_name VARCHAR(50) NOT NULL, diameter DECIMAL, distance_from_sun DECIMAL);
+CREATE TABLE planets(planet_id INT, planet_name VARCHAR(50) NOT NULL, diameter DECIMAL, distance_from_sun DECIMAL NOT NULL);
+DESCRIBE planets;
 
++-------------------+---------------+------+-----+---------+-------+
+| Field             | Type          | Null | Key | Default | Extra |
++-------------------+---------------+------+-----+---------+-------+
+| planet_id         | int           | YES  |     | NULL    |       |
+| planet_name       | varchar(50)   | NO   |     | NULL    |       |
+| diameter          | decimal(10,0) | YES  |     | NULL    |       |
+| distance_from_sun | decimal(10,0) | NO   |     | NULL    |       |
++-------------------+---------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+ALTER TABLE planets MODIFY distance_from_sun DECIMAL NULL;
 DESCRIBE planets;
 +-------------------+---------------+------+-----+---------+-------+
 | Field             | Type          | Null | Key | Default | Extra |
